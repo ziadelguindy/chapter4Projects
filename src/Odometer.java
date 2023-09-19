@@ -37,6 +37,8 @@ public class Odometer {
 
     public double gallonsUsed;
 
+    public double totalGallonsUsed = 0.0;
+
     public void resetOdometer() //This class will reset the odometer to 0.0 miles.
     {
         totalMiles = 0.0;
@@ -47,8 +49,8 @@ public class Odometer {
         Scanner ayaye = new Scanner(System.in);
         System.out.println("Enter the amount of miles you have traveled in this trip.");
         miles = ayaye.nextDouble();
-        totalMiles = totalMiles + miles;
-        System.out.println("So far, you have driven " + totalMiles + " miles.");
+        totalMiles = totalMiles + miles; //add the miles for each trip to the total miles traveled.
+        System.out.println("So far, you have driven " + totalMiles + " miles in total.");
     }
     public void setFuelEfficiency() //This class will calculate the fuel efficiency in miles per gallon.
     {
@@ -69,9 +71,10 @@ public class Odometer {
     public double getFuelRemaining() //Accessor method that gets the remaining fuel from a certain trip.
     {
         gallonsUsed = miles / fuelEff; //get gallons used in a trip by dividing the trip distance by the vehicle's fuel economy.
-
+        totalGallonsUsed = totalGallonsUsed + gallonsUsed;
+        System.out.println("You have used " + totalGallonsUsed + " gallons in total.");
         gallonsRemaining = totalGallons - gallonsUsed;
-        System.out.println("From the " + totalGallons + " gallons you had initially, you used " + gallonsUsed + " gallons, which leaves you with " + gallonsRemaining + " gallons.");
+        System.out.println("From the " + totalGallons + " gallons you had initially, you used " + gallonsUsed + " gallons in this trip, which leaves you with " + gallonsRemaining + " gallons.");
             totalGallons = gallonsRemaining;
         if (gallonsRemaining <= 4 && gallonsRemaining >= 0.00001)
         {
